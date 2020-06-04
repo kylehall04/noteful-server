@@ -4,9 +4,11 @@ const cors = require('cors');
 const morgan = require('morgan');
 const helmet = require('helmet');
 
+const { NODE_ENV } = require('./config');
+
 const app = express();
 
-const morganOption = process.env.NODE_ENV === 'production'
+const morganOption = NODE_ENV === 'production'
   ? 'tiny'
   : 'common';
 
@@ -20,7 +22,7 @@ app.get('/', (req, res) => {
 
 app.use(function errorHandler(error, req, res, next) {  // eslint-disable-line no-unused-vars
   let response;
-  if (process.env.NODE_ENV === 'production') {
+  if (NODE_ENV === 'production') {
     response = { message: 'Internal server error occurred.' };
   } else {
     console.log(error);
