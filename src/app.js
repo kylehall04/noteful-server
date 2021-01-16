@@ -25,10 +25,10 @@ app.get('/', (req, res) => {
 app.use(function errorHandler(error, req, res, next) {
   // eslint-disable-line no-unused-vars
   let response;
+  console.log(error);
   if (NODE_ENV === 'production') {
     response = { message: 'Internal server error occurred.' };
   } else {
-    console.log(error);
     response = { message: error.message };
   }
 
